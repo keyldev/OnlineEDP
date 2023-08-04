@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="OnlineEDP.MVVM.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineEDP.MVVM.View"
+             mc:Ignorable="d" 
+             MinHeight="500" MinWidth="900">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#00BEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="White"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#00209BDA"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="MenuButtonsStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF135F80"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border CornerRadius="0,0,7,7" Background="#171717" HorizontalAlignment="Left" Width="170">
+            <Grid >
+                <TextBlock Text="OnlineEDP" Foreground="White" FontFamily="/Assets/Fonts/#Acrom bold" FontSize="15"
+                       HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0"/>
+                <StackPanel VerticalAlignment="Top" Margin="10,136,11,0">
+                    <Button x:Name="TeacherButton" Content="Teacher" BorderThickness="0,0,1,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Width="141" Height="30"
+                        Foreground="#737373" Background="Transparent" FontFamily="/assets/fonts/#acrom medium" FontSize="13" Style="{DynamicResource MenuButtonsStyle}"
+                            Command="{Binding TeacherButton}" Visibility="{Binding AdminButtonVisibility}"/>
+                    <Button x:Name="AllCoursesButton" Content="All courses" BorderThickness="0,0,1,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Width="141" Height="30"
+                        Foreground="#737373" Background="Transparent" FontFamily="/assets/fonts/#acrom medium" FontSize="13" Style="{DynamicResource MenuButtonsStyle}"
+                            Command="{Binding AllCoursesButton}"/>
+                    <Button Content="My courses" BorderThickness="0,0,1,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Width="141" Height="30" Margin="0,3,0,0"
+                        Foreground="#737373" Background="Transparent" FontFamily="/assets/fonts/#acrom medium" FontSize="13" Style="{DynamicResource MenuButtonsStyle}"
+                            Command="{Binding MyCoursesButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <ContentControl Margin="172,2,172,0" Content="{Binding MenuItemView}"/>
+        <Border HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="170" Background="#171717">
+            <Grid>
+                <TextBlock Text="Personal Account" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10"
+                           FontFamily="/assets/fonts/#acrom medium" FontSize="12"/>
+                <Grid x:Name="AccountInfo" Margin="0,29,0,285">
+                    <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="20" RadiusY="20" Height="100" Width="100">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/Assets/avatar.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,120,0,0">
+                        <TextBlock Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontFamily="/assets/fonts/#acrom medium"  TextWrapping="Wrap"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
+                               FontSize="14"/>
+                        <!---Биндинг данных допилить, имя фамилия, статус, количество уведомлений, тексты уведомлений etc
+                        привязка по ids, допилить всё это и начать бек -->
+                        <TextBlock Text="{Binding UserRole}" Foreground="Gray" FontFamily="/assets/fonts/#acrom regular" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,0"
+                               FontSize="12"/>
+                    </StackPanel>
+                </Grid>
+                <Grid VerticalAlignment="Top" Margin="0,268,0,0">
+                    <TextBlock Text="Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
+                           FontFamily="/assets/fonts/#acrom regular" Margin="10,0,0,0"/>
+                    <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="146,0,0,0" BorderThickness="0"
+                            CornerRadius="10" Height="14" Width="14" Background="White">
+                        <TextBlock Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding NotificationCountText}" FontSize="10"
+                                   FontFamily="/assets/fonts/#acrom"/>
+                    </Border>
+                    <ScrollViewer Margin="0,15,0,0" Height="200">
+                        <ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,10,0,0"
+                                  ItemsSource="{Binding UserNotifications}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:NotificationCardView/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</UserControl>

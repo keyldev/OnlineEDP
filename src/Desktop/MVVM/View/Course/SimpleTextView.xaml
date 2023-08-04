@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="OnlineEDP.MVVM.View.Course.SimpleTextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineEDP.MVVM.View.Course"
+             mc:Ignorable="d" 
+             Height="Auto">
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" Margin="0,10,0,0" Orientation="Vertical" VerticalAlignment="Top">
+            <TextBox FontSize="24" BorderThickness="0" Background="Transparent" Foreground="White"
+                Text="{Binding HeaderBlockText, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}"/>
+            <TextBox Text="{Binding DescriptionBlockText, Mode=TwoWay}" Foreground="White" BorderThickness="0" Background="Transparent"
+                FontSize="16" TextWrapping="WrapWithOverflow" IsReadOnly="{Binding IsReadOnly}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

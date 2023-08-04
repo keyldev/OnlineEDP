@@ -1,0 +1,57 @@
+﻿<Application x:Class="OnlineEDP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OnlineEDP"
+             xmlns:view="clr-namespace:OnlineEDP.MVVM.View"
+             xmlns:viewModel="clr-namespace:OnlineEDP.MVVM.ViewModel"
+             
+             xmlns:teacherView="clr-namespace:OnlineEDP.MVVM.View.Teacher"
+             xmlns:teacherVM="clr-namespace:OnlineEDP.MVVM.ViewModel.Teacher"
+             
+             xmlns:courseView="clr-namespace:OnlineEDP.MVVM.View.Course"
+             xmlns:courseVM="clr-namespace:OnlineEDP.MVVM.ViewModel.Course"
+             
+             StartupUri="/MVVM/View/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                <view:MainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserFullCourseViewModel}">
+                <view:UserFullCourseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AllCoursesViewModel}">
+                <view:AllCoursesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:WelcomeAccountViewModel}">
+                <view:WelcomeAccountView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type teacherVM:EditFullCourseViewModel}">
+                <teacherView:EditFullCourseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type teacherVM:TeachersCourseViewModel}">
+                <teacherView:TeacherCoursesView/>
+            </DataTemplate>
+            <!--Дата биндинг курс вью-->
+            <DataTemplate DataType="{x:Type courseVM:SectionElementViewModel}">
+                <courseView:SectionElementView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type courseVM:AdditionalFileViewModel}">
+                <courseView:AdditionalFileView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type courseVM:SimpleTextViewModel}">
+                <courseView:SimpleTextView/>
+            </DataTemplate>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Assets/Styles/ScrollBarStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

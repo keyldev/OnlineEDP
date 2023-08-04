@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="OnlineEDP.MVVM.View.Teacher.TeacherCoursesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineEDP.MVVM.View.Teacher"
+             xmlns:courseCard="clr-namespace:OnlineEDP.MVVM.View"
+             mc:Ignorable="d" 
+             Width="auto">
+    <!--С точки зрения логики, можно везде юзать вьюшки, но с проверками. Мб переделать-->
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <ItemsControl ItemsSource="{Binding CoursesList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <courseCard:CourseCardView/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

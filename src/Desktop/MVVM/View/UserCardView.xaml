@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="OnlineEDP.MVVM.View.UserCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineEDP.MVVM.View"
+             mc:Ignorable="d" 
+             Width="240" Height="80">
+    <Border BorderThickness="0" CornerRadius="4" Background="#171717">
+        <Grid>
+            <Rectangle RadiusX="10" RadiusY="10" HorizontalAlignment="left" VerticalAlignment="Center"
+                       Height="70" Width="70" Margin="10,0,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Assets/avatar.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,10,0,0">
+                <TextBlock Foreground="White" Text="{Binding UserName}" FontFamily="/Assets/Fonts/#Acrom Bold"/>
+                <TextBlock Foreground="Gray" Text="{Binding UserRole}" FontFamily="/Assets/Fonts/#Acrom Medium"
+                           Margin="3,2,0,0"/>
+            </StackPanel>
+            <ItemsControl HorizontalAlignment="Left" VerticalAlignment="Top" Margin="85,60,0,0"
+                          Height="15" ItemsSource="{Binding UserSkillsList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#7F888888" CornerRadius="2"
+                    Height="15" Width="40" Margin="3,0,0,0">
+                            <TextBlock Text="{Binding UserSkillName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Assets/Fonts/#Acrom" FontSize="8" Foreground="#FFC7C7C7"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+        </Grid>
+    </Border>
+</UserControl>

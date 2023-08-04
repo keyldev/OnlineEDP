@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="OnlineEDP.MVVM.View.UserFullCourseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineEDP.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF373737"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#994A4A4A"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ReturnButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="8" BorderThickness="0" >
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="7">
+                <Button Style="{DynamicResource ReturnButtonStyle}" Background="Transparent" BorderThickness="0" VerticalAlignment="Top"
+                    Margin="5,3,0,0" Height="30" Width="39" Command="{Binding ReturnToCoursesCommand}">
+                    <Grid Width="26">
+                        <Path Data="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757   c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072   c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315   C400.004,190.438,392.251,182.686,382.688,182.686z" HorizontalAlignment="Left"
+                            Stretch="Uniform" Fill="White" Height="15" Width="25"/>
+                    </Grid>
+                </Button>
+                <TextBlock VerticalAlignment="Center" FontFamily="/Assets/Fonts/#Acrom Medium"
+                    FontSize="16" Foreground="White" Margin="5,0,0,0">
+                    <Run Text="Курс: "/>
+                    <Run Text="{Binding CourseNameBlock}" />
+                </TextBlock>
+            </StackPanel>
+            <ItemsControl HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,45,0,0" Width="550"
+                          ItemsSource="{Binding CourseElementsList}"/>
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,45,0,0" Width="240">
+                <TextBlock Text="Teachers:" Foreground="White" FontFamily="/Assets/Fonts/#Acrom light"
+                       FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                <ItemsControl VerticalAlignment="Top" Margin="0,32,0,0" Height="161" ItemsSource="{Binding TeachersList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:UserCardView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Students:" Foreground="White" FontFamily="/Assets/Fonts/#Acrom light"
+                    FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,198,0,0"/>
+                <ItemsControl VerticalAlignment="Top" Margin="0,220,0,0" Height="175" ItemsSource="{Binding StudentsList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:UserCardView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Button Content="{Binding EnterLeaveText}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,10,0" Height="25"
+                    BorderThickness="0" FontFamily="/Assets/Fonts/#acrom bold" FontSize="12" Width="120"
+                    Command="{Binding EnterLeaveCommand}"/>
+        </Grid>
+    </Border>
+</UserControl>
